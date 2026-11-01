@@ -1,0 +1,28 @@
+dataset,item,value
+CSB 2016-2023,national_polygons,16194800
+CSB 2017-2024,national_polygons,16418257
+CSB 2018-2025,national_polygons,15973095
+CDL 2023 30 m,grid_rows_x_cols,96523 x 153811
+CDL 2024 30 m,grid_rows_x_cols,96523 x 153811
+CDL 2024 10 m,grid_rows_x_cols,289567 x 461431
+CDL 2025 30 m,grid_rows_x_cols,105432 x 160171
+CDL 2025 10 m,grid_rows_x_cols,316295 x 480509
+Census counties 2023,conus_counties,3109
+Quick Stats county planted,corn_2022_counties,1512
+Quick Stats county planted,corn_2023_counties,1430
+Quick Stats county planted,corn_2024_counties,1267
+Quick Stats county planted,corn_2025_counties,1211
+Quick Stats county planted,cotton_2022_counties,308
+Quick Stats county planted,cotton_2023_counties,285
+Quick Stats county planted,cotton_2024_counties,298
+Quick Stats county planted,cotton_2025_counties,252
+Quick Stats county planted,soybeans_2022_counties,1368
+Quick Stats county planted,soybeans_2023_counties,1278
+Quick Stats county planted,soybeans_2024_counties,1119
+Quick Stats county planted,soybeans_2025_counties,1072
+Quick Stats county planted,winter_wheat_2022_counties,851
+Quick Stats county planted,winter_wheat_2023_counties,804
+Quick Stats county planted,winter_wheat_2024_counties,57
+Quick Stats county planted,winter_wheat_2025_counties,712
+CropSight-US 2021-2023,objects,40805
+all,manifest_files,224

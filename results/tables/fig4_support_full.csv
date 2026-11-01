@@ -1,0 +1,5 @@
+crop,n_states_fixed,share_survey_area_min,share_survey_area_mean
+corn,48,1.0,1.0
+soybeans,29,0.9992076450249712,0.9996131450926915
+winter_wheat,34,0.9869391419593425,0.9951920617902515
+hay,48,1.0,1.0

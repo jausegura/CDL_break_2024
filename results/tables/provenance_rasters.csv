@@ -1,0 +1,5 @@
+year,res_m,file,crs,pixel_x,pixel_y,origin_x,origin_y,width,height,nodata,dtype,source_zip,zip_sha256
+2024,30,data/interim/cdl/cdl_2024_30m.tif,EPSG:5070,30.0,-30.0,-2356095.0,3172605.0,153811,96523,,uint8,data/raw/cdl/2024_30m_cdls.zip,e5dd682dba8acbcde36527cde348c7a2fdc54134b87a619e1d7d15cd7ef420d6
+2024,10,data/interim/cdl/cdl_2024_10m.tif,EPSG:5070,10.0,-10.0,-2356085.0,3172595.0,461431,289567,,uint8,data/raw/cdl/2024_10m_cdls.zip,c9ce6d7a28cee6896a7d0aed308ecb007c9331e640504dff0081663ceea55993
+2025,30,data/interim/cdl/cdl_2025_30m.tif,EPSG:5070,30.0,-30.0,-2417835.0,3321225.0,160171,105432,0.0,uint8,data/raw/cdl/2025_30m_cdls.zip,3621cf215579b1748b0949279539533e36861e3def64acaeef0b043e8981aa51
+2025,10,data/interim/cdl/cdl_2025_10m.tif,EPSG:5070,10.0,-10.0,-2417815.0,3321235.0,480509,316295,,uint8,data/raw/cdl/2025_10m_cdls.zip,decb52a7c472ce9ac855b295b7185c87c019a07cdb1f33a3d81fa1611de10e03
