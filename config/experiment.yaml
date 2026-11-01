@@ -1,0 +1,82 @@
+project: cdl-break-2024
+seed: 42
+pilot:
+  states: [IA, IL, NE, KS, PA, CA]
+  years: [2021, 2022, 2023, 2024, 2025]
+full:
+  states: all_conus
+  years: [2008, 2025]
+cdl:
+  resample_2024_2025: [nass_30m, majority_3x3]
+csb:
+  windows: ["2016-2023", "2017-2024", "2018-2025"]
+stratification:
+  edge_buffers_m: [30, 60]
+  field_size_deciles: true
+crops_focus: [corn, soybeans, winter_wheat, cotton]
+model_e4:
+  features: hls_monthly_medians   # HLS v2 L30+S30, Planetary Computer; 6 bandas + NDVI
+  months: [5, 6, 7, 8, 9]
+  max_cloud: 40
+  train_eras: {old: [2021, 2022, 2023], new: [2024]}
+  test_year: 2025
+  n_train_per_window: 30000
+  seeds: [42, 43, 44]
+  # ventanas donde CropSight-US 2021–2023 es más denso (scripts/02g) + una de parcela pequeña (PA)
+  windows:
+    - {name: il_ogle, state: IL, mgrs: "15TYG", lonlat: [-89.4488, 42.1186], col_off: 2608, row_off: 520, size: 1024}
+    - {name: ia_west, state: IA, mgrs: "15TTF", lonlat: [-95.5377, 41.3226], col_off: 2665, row_off: 488, size: 512}
+    - {name: pa_lancaster, state: PA, mgrs: "18TUK", lonlat: [-76.2266, 39.7699], col_off: 2908, row_off: 2979, size: 512}
+stats:
+  bootstrap_reps: 1000
+  county_min_den: 1000          # píxeles de denominador por condado y par para las cuotas por condado
+  county_min_den_sensitivity: [0, 500, 1000, 5000]
+reference_sample:               # muestra estratificada para validación independiente (scripts/07a)
+  pair: [2023, 2024]
+  tile_size: 512                 # píxeles de 30 m; las teselas forman una partición de la rejilla nacional
+  n_tiles: 800                   # teselas con dato elegidas al azar (sin reemplazo)
+  n_per_stratum:                 # asignación tipo Olofsson et al. (2014): estratos de cambio raros sobremuestreados
+    stable_crop: 75
+    stable_grass_pasture: 75
+    stable_other: 75
+    crop_to_grass_pasture: 100
+    grass_pasture_to_crop: 100
+    forest_shrub_to_grass_pasture: 75
+    other_change: 75
+compute:
+  block_size: 2048        # píxeles (30 m) por lado en lecturas por ventana
+  n_workers: 3            # máquina compartida con otros procesos (15,8 GB RAM)
+  e2_workers: 1           # E2 carga los polígonos CSB de un estado en cada proceso (≈2–3 GB)
+  download_workers: 6
+sources:
+  cdl_base: https://www.nass.usda.gov/Research_and_Science/Cropland/Release/datasets/
+  cdl_30m_pattern: "{year}_30m_cdls.zip"
+  cdl_10m_pattern: "{year}_10m_cdls.zip"
+  cdl_10m_years: [2024, 2025]
+  csb_base: https://www.nass.usda.gov/Research_and_Science/Crop-Sequence-Boundaries/datasets/
+  csb_pattern: "NationalCSB_{window}_rev23.zip"
+  counties: https://www2.census.gov/geo/tiger/GENZ2023/shp/cb_2023_us_county_500k.zip
+  cropsight: https://zenodo.org/records/19501943/files/cropsight-us_app_dat_v1.0.1.zip
+  quickstats_api: https://quickstats.nass.usda.gov/api/api_GET/
+  hls_stac: https://planetarycomputer.microsoft.com/api/stac/v1
+# Edición NLCD usada por NASS como entrenamiento no agrícola de cada CDL (metadatos de Iowa
+# metadata_iaYY.htm y nacionales 2024–2025, consultados 2026-10-18). 2008–2009 fueron reprocesados.
+nlcd_training:
+  2008: "2011mod"
+  2009: "2011mod"
+  2010: "2001"
+  2011: "2006"
+  2012: "2006"
+  2013: "2006"
+  2014: "2011"
+  2015: "2011"
+  2016: "2011"
+  2017: "2011"
+  2018: "2011"
+  2019: "2016"
+  2020: "2016"
+  2021: "2019"
+  2022: "2019"
+  2023: "2019"
+  2024: "2021"
+  2025: "2024"
